@@ -42,22 +42,21 @@ bind-address: "*"
 ipv6: false
 unified-delay: true
 tcp-concurrent: true
+# interface-name: enp6s18
 log-level: warning
 find-process-mode: 'off'
-# interface-name: en0
 global-client-fingerprint: chrome
 keep-alive-idle: 600
 keep-alive-interval: 15
-disable-keep-alive: false
 profile:
   store-selected: true
   store-fake-ip: true
 
-# 控制面板，external-ui 路径如果出现报错，根据你使用的插件进行调整，比如openclash改为： /etc/openclash/run/ui  ，裸核跑改为/etc/mihomo/run/ui
-# 因容易造成新手面板启动问题，我注释掉了，需要的自行开启
+# 为防止使用插件朋友遇到面板问题，我注释掉了此模块。
+# 跑裸核朋友自行删除注释即可
 #external-controller: 0.0.0.0:9090
 #secret: ""
-#external-ui: "/etc/nikki/run/ui"
+#external-ui: "/etc/mihomo/ui"
 #external-ui-name: zashboard
 #external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 
@@ -157,10 +156,10 @@ rules:
   - RULE-SET,microsoft_domain,🪟 Microsoft
   - RULE-SET,apple_domain,🍎 Apple
   - RULE-SET,tiktok_domain,🎵 TikTok
-  - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,telegram_domain,📲 Telegram
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,apple_ip,🍎 Apple,no-resolve
   - RULE-SET,google_ip,🍀 Google,no-resolve
   - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
   - RULE-SET,telegram_ip,📲 Telegram,no-resolve
@@ -198,3 +197,4 @@ rule-providers:
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+  apple_ip: {<<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/apple.mrs"}
